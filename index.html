@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tierra 3D Interactiva - Low Poly</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Explora la Tierra en 3D con estilo low poly. Aprende sobre líneas de latitud y longitud de forma interactiva.">
+    <meta name="theme-color" content="#00ffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tierra 3D">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Pantalla de inicio -->
+    <div id="pantalla-inicio" class="pantalla-inicio">
+        <div class="contenido-inicio">
+            <h1 class="titulo-inicio">🌍 Tierra 3D Interactiva</h1>
+            <div class="descripcion-inicio">
+                <p><strong>Explora nuestro planeta</strong></p>
+                <p class="instrucciones-uso">
+                    <span class="icono-instruccion">👉</span> <strong>Arrastra</strong> para girar la Tierra<br>
+                    <span class="icono-instruccion">👆</span> <strong>Toca las líneas</strong> para aprender sobre geografía<br>
+                    <span class="icono-instruccion">🌟</span> <strong>Toca el espacio</strong> para ver datos curiosos<br>
+                </p>
+            </div>
+            <button id="boton-comenzar" class="boton-comenzar">
+                🚀 COMENZAR EXPLORACIÓN
+            </button>
+        </div>
+    </div>
+    
+    <!-- Canvas de Three.js -->
+    <div id="container"></div>
+    
+    <!-- Cuadro de diálogo -->
+    <div id="dialogo" class="dialogo oculto">
+        <p id="texto-dialogo"></p>
+    </div>
+    
+    <!-- Instrucciones iniciales -->
+    <div id="instrucciones" class="instrucciones">
+        🌍 Presiona y arrastra para girar la Tierra • 🌟 Toca el fondo para ver mensajes
+    </div>
+    
+    <!-- Control de música -->
+    <button id="toggle-music" class="music-toggle">🔊</button>
+    
+    <!-- Cargar Three.js desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Loader para modelos GLTF/GLB -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Registrar Service Worker para PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registrado:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('❌ Error al registrar Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

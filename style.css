@@ -1,0 +1,372 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0a0a1a 0%, #1a0a2e 100%);
+    color: #fff;
+}
+
+/* Container del canvas */
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+/* Pantalla de inicio */
+.pantalla-inicio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0f1535 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: aparecer 0.5s ease-out;
+}
+
+.pantalla-inicio.ocultar {
+    animation: desvanecer 0.8s ease-out forwards;
+}
+
+.contenido-inicio {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+    background: rgba(15, 21, 53, 0.7);
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    border-radius: 30px;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.titulo-inicio {
+    font-size: 2.5em;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00ffff, #00d4ff, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    animation: pulso 2s ease-in-out infinite;
+}
+
+.descripcion-inicio {
+    margin: 25px 0;
+}
+
+.descripcion-inicio p {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    font-style: normal;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.instrucciones-uso {
+    text-align: left;
+    background: rgba(0, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    line-height: 1.8;
+    font-size: 0.95em !important;
+}
+
+.icono-instruccion {
+    display: inline-block;
+    width: 30px;
+    font-size: 1.2em;
+}
+
+.boton-comenzar {
+    margin-top: 30px;
+    padding: 18px 40px;
+    font-size: 1.3em;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    background: linear-gradient(135deg, #00ffff, #00aaff);
+    color: #0a0a1a;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.boton-comenzar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+    background: linear-gradient(135deg, #00ffff, #00d4ff);
+}
+
+.boton-comenzar:active {
+    transform: scale(0.98);
+}
+
+/* Cuadro de diálogo estilo retro */
+#dialogo {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #1e293b99, #334155aa);
+  border: 2px solid #00ffff55;
+  border-radius: 20px;
+  padding: 20px 25px;
+  color: #fff;
+  font-size: 1em;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  font-style: normal;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+  max-width: 90%;
+  line-height: 1.6;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  animation: aparecer 0.5s ease-out;
+  z-index: 1000;
+}
+
+#dialogo strong {
+  font-weight: bold;
+  font-style: normal;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+
+.dialogo p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    margin: 0;
+}
+
+/* Animación de aparición */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Clase para ocultar el diálogo */
+.dialogo.oculto {
+    display: none;
+}
+
+/* Instrucciones iniciales */
+.instrucciones {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 10, 46, 0.9);
+    border: 2px solid #ff6b6b;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+    z-index: 100;
+    animation: parpadeo 2s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes pulso {
+    0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes desvanecer {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Ocultar instrucciones después de la primera interacción */
+.instrucciones.oculto {
+    animation: desaparecer 0.5s ease-out forwards;
+}
+
+@keyframes desaparecer {
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+/* Botón de control de música */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(26, 10, 46, 0.8);
+    border: 2px solid #00ffff55;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+    border-color: #00ffff;
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+.music-toggle.muted {
+    opacity: 0.5;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .titulo-inicio {
+        font-size: 2em;
+    }
+    
+    .contenido-inicio {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .descripcion-inicio p {
+        font-size: 1em;
+    }
+    
+    .instrucciones-uso {
+        font-size: 0.9em !important;
+        padding: 15px;
+    }
+    
+    .boton-comenzar {
+        font-size: 1.1em;
+        padding: 15px 30px;
+    }
+    
+    #dialogo {
+        width: 90%;
+        max-width: 90%;
+        padding: 15px 20px;
+        bottom: 20px;
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+    
+    #dialogo strong {
+        font-size: 1em;
+    }
+    
+    .instrucciones {
+        font-size: 11px;
+        padding: 10px 15px;
+        max-width: 90%;
+    }
+    
+    .music-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .titulo-inicio {
+        font-size: 1.6em;
+    }
+    
+    .contenido-inicio {
+        padding: 15px;
+    }
+    
+    .descripcion-inicio p {
+        font-size: 0.9em;
+    }
+    
+    .instrucciones-uso {
+        font-size: 0.85em !important;
+        padding: 12px;
+    }
+    
+    .boton-comenzar {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+    
+    #dialogo {
+        font-size: 0.85em;
+        padding: 12px 16px;
+        bottom: 15px;
+    }
+    
+    .instrucciones {
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+}
+
+/* Efecto de brillo en el borde del diálogo */
+/*.dialogo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b, #ffd700, #4ecdc4);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    animation: brilloRotante 3s linear infinite;
+}*/
+
+@keyframes brilloRotante {
+    0% { opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0; }
+}
